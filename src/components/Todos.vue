@@ -24,7 +24,10 @@
             </div>
           </div>
           <div class="tile-action">
-            <input type="checkbox" :checked="t.checked" @change="toggleTodo(todo, t)" />
+            <label class="switch">
+              <input type="checkbox" :checked="t.checked" @change="toggleTodo(todo, t)" />
+              <span class="slider round"></span>
+            </label>
           </div>
         </div>
       </div>
@@ -104,11 +107,83 @@ export default {
 }
 
 .todo-list {
-  padding: 10px;
+  padding: 20px 10px 0px 20px;
 }
 
 .checked {
   text-decoration: line-through;
   color: lightgray;
+}
+
+.btn.btn-primary {
+  background-color: #2196F3;
+  border-color: #2196F3;
+  border-radius: 10px;
+}
+
+.form-input {
+  border-radius: 10px;
+}
+
+
+/* TODO: Export to new component */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 </style>
